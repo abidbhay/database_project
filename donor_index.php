@@ -9,15 +9,10 @@ session_start();
 	if($_SERVER['REQUEST_METHOD'] == "POST")
 	{
 		//something was posted
-		$receiver_id = $_POST['receiver_id'];
+
 		$dtype = $_POST['dtype'];
 		$user_id =  $user_data['user_id'] ;
-		if(!empty($receiver_id) )
-		{
 
-			$query = "insert into donation (donor_id,receiver_id,donation_type) values ('$user_id',	'$receiver_id','$dtype')";
-
-			mysqli_query($con, $query);
 			if ($dtype==="money"){
 				header("Location: money_donor.php");
 			}
@@ -25,11 +20,8 @@ session_start();
 				header("Location: product_donor.php");
 			}
 			die;
-		}else
-		{
-			echo "Please enter some valid information!";
 		}
-	}
+
 ?>
 
 <!DOCTYPE html>
@@ -91,8 +83,7 @@ session_start();
 						</table>
 						<form method="post">
 
-			        Enter receiver_id for your donation:
-			        <input id="text" type="text" name="receiver_id" > <br>
+
 
 			        <label for="utype">Choose your donation type:</label>
 			        <select name="dtype" id="dtype">
@@ -105,7 +96,7 @@ session_start();
 
 							 <br>
 
-						
+
 
 		         </select>
 
