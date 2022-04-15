@@ -28,5 +28,10 @@
       
         <label for = "re_pass"><b> Re-enter Password </b></label>
         <input type = "password" placeholder = "Re-enter Passowrd" name = "re_pass" id = "re_pass" required/>
+      </hr>
+    
+      <button class = "submitbtn" type = "submit"> Submit </button>
+    </form>
+  </div>
   </body>
 </html>
