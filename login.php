@@ -1,3 +1,4 @@
+
 <?php
 
 session_start();
@@ -35,6 +36,9 @@ session_start();
 						}
 						if($user_data['utype']==='receiver'){
 							header("Location: receiver_index.php");
+						}
+						if($user_data['utype']==='admin'){
+							header("Location: admin_index.php");
 						}
 
 						die;
