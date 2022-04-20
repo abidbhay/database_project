@@ -11,9 +11,11 @@ session_start();
     // posted details
     $don_id = random_num(5);
     $receiver_id = $_POST['receiver_id'];
+		$receiver_username =$_POST['receiver_username'];
     $amount = $_POST['amt'];
     $trx_id = $_POST['trx_id'];
     $user_id =  $user_data['user_id'] ;
+		$user_name = $user_data['user_name'];
     $acc_num = $_POST['acc_num'];
     $inp_id = $_POST['u_id'];
     $inp_pass = $_POST['pass'];
@@ -21,9 +23,9 @@ session_start();
 		if(!empty($receiver_id) && !empty($amount) && !empty($trx_id) && !empty($user_id) && !empty($acc_num) && !empty($inp_id) && !empty($inp_pass) && !empty($inp_repass) && $inp_pass=== $inp_repass && $inp_pass===$user_data['password'] && $inp_id===$user_id)
 		{
 
-			$query = "INSERT INTO donation(donation_id,donor_id,receiver_id,amount,trx_id,acc_num,moneyflag,productflag) VALUES ('$don_id','$user_id','$receiver_id','$amount',	'$trx_id','$acc_num',1,0) ";
+			$query = "INSERT INTO donation(donation_id,donor_id,receiver_id,amount,trx_id,acc_num,moneyflag,productflag,donor_name,receiver_name) VALUES ('$don_id','$user_id','$receiver_id','$amount',	'$trx_id','$acc_num',1,0, '$user_name','$receiver_username')";
 
-			mysqli_query($con, $query);
+			  mysqli_query($con, $query);
 
 				header("Location: successfull_payment.php");
 
@@ -85,7 +87,8 @@ session_start();
         </hr>
         Enter receiver_id for your donation:
         <input id="text" type="text" name="receiver_id" > <br>
-
+				Enter receiver user_name:
+				<input id="text" type="text" name="receiver_username" > (Optional) <br>
         <label for = "amt"><b> Amount </b></label>
         <input type = "text" placeholder = "Amount" name = "amt" id = "amt" required/>
           <br>
