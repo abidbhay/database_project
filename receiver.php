@@ -197,7 +197,8 @@ session_start();
   <button type="submit" class="btn btn-primary mb-4 ml-4 mr-4">Submit</button>
 </form>
 </div>
-
+            List of all donors:
+            <br>
 						<table style="border:1px solid black;margin-left:auto;margin-right:auto;">
 							<tr>
 								<th>  <font size="2"> Receiver Name </font></th>
@@ -224,7 +225,7 @@ session_start();
 						</table>
 
 
-
+<a href="logout.php">Logout</a>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
