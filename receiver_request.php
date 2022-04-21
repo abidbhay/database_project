@@ -1,15 +1,9 @@
 <?php
+session_start();
 
-$scon = mysqli_connect('localhost','root');
+	include("connection.php");
+	include("functions.php");
 
-if ($scon){
-    echo "Connection Successful";
-}
-else{
-    echo "Connection Failed";
-}
-
-mysqli_select_db($scon, 'receiver_request');
 
 $id = $_POST['personal_userId'];
 $nid = $_POST['personal_nid'];
@@ -22,7 +16,7 @@ $address = $_POST['personal_address'];
 $request_reason = $_POST['personal_whyrequest'];
 
 $query = "INSERT INTO personal (personal_userId, personal_nid, personal_name, personal_email,personal_product, personal_product_quantity, personal_amount, personal_address, personal_whyrequest) VALUES('$id', '$nid', '$name', '$email', '$product', '$product_quantity', '$amount', '$address', '$request_reason')";
-mysqli_query($scon,$query);
+mysqli_query($con,$query);
 
 header('location:receiver.php');
 
