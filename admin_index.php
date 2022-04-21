@@ -28,6 +28,9 @@ session_start();
 
 
 		 <font size="1">Hello <?php echo $user_data['user_name'] ?></font><br>
+		 <br>
+		 <a href="msg_query.php"> Send a message</a> <br><br>
+		 <a href="inbox.php">View inbox</a> <br><br>
 				The highest single donation made by a donor this year:
 				<br>
 				<?php
