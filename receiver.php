@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+	include("connection.php");
+	include("functions.php");
+ ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,8 +67,8 @@
     <label for="personal_name">Name</label>
     <input type="text" class="form-control" name="personal_name" placeholder="Your Name">
   </div>
-    
-    
+
+
     <div class="form-group col-md-6">
       <label for="personal_email">Email</label>
       <input type="email" class="form-control" name="personal_email" placeholder="Email">
@@ -99,7 +107,7 @@
   </div>
 
 
-    
+
 
   <button type="submit" class="btn btn-primary mb-4 ml-4 mr-4">Submit</button>
 </form>
@@ -138,8 +146,8 @@
     <label for="org_name">Organization Name</label>
     <input type="text" class="form-control" name="org_name" placeholder="Your Organization Name">
   </div>
-    
-    
+
+
     <div class="form-group col-md-6">
       <label for="org_email">Email</label>
       <input type="email" class="form-control" name="org_email" placeholder="Email">
@@ -184,12 +192,36 @@
   </div>
 
 
-    
+
 
   <button type="submit" class="btn btn-primary mb-4 ml-4 mr-4">Submit</button>
 </form>
 </div>
 
+						<table style="border:1px solid black;margin-left:auto;margin-right:auto;">
+							<tr>
+								<th>  <font size="2"> Receiver Name </font></th>
+								<th>  <font size="2"> Receiver ID </font></th>
+							</tr>
+							<?php
+
+								$con= mysqli_connect("localhost","root","", "charity");
+								$sql= 'SELECT * from users WHERE utype="donor"';
+								$result= $con->query($sql);
+
+								if ($result->num_rows>0){
+									while($row= $result-> fetch_assoc()){
+									 echo	 "<tr><td>".$row['user_name'] . "</td><td>" .$row['user_id'] . "</td>" ;
+									}
+								}
+								else {
+									echo "No results";
+								}
+
+
+								$con->close();
+							 ?>
+						</table>
 
 
 
