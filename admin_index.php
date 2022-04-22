@@ -179,7 +179,7 @@ Total number of active receivers and donors in the website:
               <a href="inbox.php" class="btn" role="button">Inbox</a>
             </li>
             <li class="nav-item nav-text">
-              <a href="admin_table1.php" class="btn" role="button">Donars</a>
+              <a href="admin_table1.php" class="btn" role="button">Donors</a>
             </li>
             <li class="nav-item nav-text">
               <a href="admin_table2.php" class="btn" role="button">Receivers</a>
