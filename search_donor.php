@@ -1,3 +1,18 @@
+<?php
+session_start();
+
+	include("connection.php");
+	include("functions.php");
+
+  $user_data = check_login($con);
+  $user_id =  $user_data['user_id'] ;
+ ?>
+
+
+
+<?php
+
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -6,7 +21,7 @@
   </head>
   <body>
 
-  <h1> User Found!!</h1>
+  <h1> User Found!! </h1>
 
   </body>
 </html>
