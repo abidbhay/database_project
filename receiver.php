@@ -27,7 +27,14 @@ session_start();
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+			<li class="nav-item nav-text">
 
+       <a href="msg_query.php" class="btn text-white" role="button">Send Message</a>
+      </li>
+
+      <li class="nav-item nav-text">
+         <a href="inbox.php" class="btn text-white" role="button">Inbox</a>
+      </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -38,15 +45,11 @@ session_start();
 				class="navbar-nav me-2 my-2 my-lg-0 navbar-nav-scroll"
 				style="--bs-scroll-height: 100px"
 			>
-				<li class="nav-item nav-text">
-					<a href="msg_query.php" class="btn btn-warning" role="button">Send Message</a>
-				</li>
+
 				<li class="nav-item nav-text">
 					<a href="received_history.php" class="btn btn-warning" role="button">Received History</a>
 				</li>
-				<li class="nav-item nav-text">
-					<a href="inbox.php" class="btn btn-warning" role="button">Inbox</a>
-				</li>
+				
 
 
 					>
