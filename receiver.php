@@ -45,9 +45,7 @@ session_start();
 					<a href="inbox.php" class="btn btn-warning" role="button">Inbox</a>
 				</li>
 
-				<li class="nav-item">
-					<a href="logout.php" class="btn btn-warning" role="button"
-						>Log Out</a
+				
 					>
 				</li>
 			</ul>
