@@ -101,6 +101,7 @@ session_start();
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+    <title>Signup page</title>
 
     <style>
     .de{
@@ -122,7 +123,7 @@ session_start();
             <div class="mb-3">
               
               <label for="exampleInputEmail1" class="form-label">User name</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="user_name">
+              <input type="type" class="form-control" id="exampleInputEmail1"  name="user_name">
               
             </div>
             <div class="mb-3">
