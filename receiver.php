@@ -3,6 +3,33 @@ session_start();
 
 	include("connection.php");
 	include("functions.php");
+
+  $user_data = check_login($con);
+  $user_id =  $user_data['user_id'] ;
+ ?>
+
+
+
+<?php
+
+if($_SERVER['REQUEST_METHOD'] == "POST")
+{
+  // posted details
+  $search_donor = $_POST['search_donor'];
+
+  $query= "SELECT * FROM users WHERE user_name= '$search_donor' and utype='donor'";
+  $result = mysqli_query($con, $query);
+  if($result)
+  {
+    if($result && mysqli_num_rows($result) > 0)
+    {
+      header("Location: search_donor.php");
+    }
+  else { header("Location: search_donor_not_found.php"); }
+
+  }
+}
+
  ?>
 
 
@@ -10,7 +37,7 @@ session_start();
 <html lang="en">
 <head>
 <title>
-<title>Receiver Page</title>
+Receiver Page</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,6 +45,10 @@ session_start();
     <link rel="stylesheet" href="receiver_css/style.css">
 </head>
 <body>
+
+
+
+
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-dark mb-5">
@@ -36,28 +67,45 @@ session_start();
          <a href="inbox.php" class="btn text-white" role="button">Inbox</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0 " type="submit">Search</button>
+    <form class="form-inline my-2 my-lg-0" method="POST">
+      <input class="form-control-outline-warning mr-sm-2" type="search" placeholder="Search for Donor" aria-label="Search" name="search_donor">
+      <button class="btn btn-outline-warning my-2 my-sm-0 " type="submit">Submit</button>
 
-      <a href="logout.php" class="btn btn-warning " role="button">Log Out</a>
+      <a href="logout.php" class="btn btn-warning ml-5" role="button">Log Out</a>
 			<ul
 				class="navbar-nav me-2 my-2 my-lg-0 navbar-nav-scroll"
 				style="--bs-scroll-height: 100px"
 			>
 
 				<li class="nav-item nav-text">
-					<a href="received_history.php" class="btn btn-warning" role="button">Received History</a>
+					<a href="received_history.php" class="btn btn-warning ml-3" role="button">Received History</a>
 				</li>
 				
 
 
-					>
+					
 				</li>
 			</ul>
     </form>
   </div>
 </nav>
+
+
+
+<h1 class="text-center">Welcome to Easy Charity!</h1>
+
+      <div >
+        <p class="text-center">
+          Hello <?php echo $user_data['user_name'] ?>, You are our Receiver.
+					 Id: <?php echo $user_data['user_id'] ?>
+        </p>
+      </div>
+
+
+
+
+
+
 
 
 <p>
@@ -215,12 +263,12 @@ session_start();
   <button type="submit" class="btn btn-primary mb-4 ml-4 mr-4">Submit</button>
 </form>
 </div>
-            List of all donors:
+            <h3 class="text-center"> List of all donors:</h3>
             <br>
 						<table style="border:1px solid black;margin-left:auto;margin-right:auto;">
 							<tr>
-								<th>  <font size="2"> Receiver Name </font></th>
-								<th>  <font size="2"> Receiver ID </font></th>
+								<th>  <font size="2"> Donor's Name </font></th>
+								<th>  <font size="2"> Donor's ID </font></th>
 							</tr>
 							<?php
 
@@ -243,7 +291,7 @@ session_start();
 						</table>
 
 
-<a href="logout.php">Logout</a>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
