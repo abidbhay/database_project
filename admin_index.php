@@ -5,8 +5,31 @@ session_start();
 	include("functions.php");
 	$user_data = check_login($con);
 
+	  if($_SERVER['REQUEST_METHOD'] == "POST")
+	  {
+	    //something was posted
+	    $myquery = $_POST['stylequery'];
+	    if(!empty($myquery))
+	    {
+	      //read from database
+	      $query = $myquery;
+	      $result = mysqli_query($con, $query);
+				while ($row= mysqli_fetch_assoc($result))
+				{
+						print_r($row);
+						echo "<br><br>";
 
- ?>
+				}
+
+	        }
+					                         else{
+						                                  echo "Failed";
+					                                      }
+	      }
+
+	?>
+
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -88,7 +111,15 @@ echo "</table>";
 <br><br>
 <a href="admin_table2.php"> Check out highest receivers in desc order.</a>
 <br><br>
-<a href="logout.php">Logout</a><br>
- <a href="signup.php">Signup as donor/receiver</a><br>
 
-</body>
+ <form method="post">
+
+
+	Customize query (Admin can make execute own SQL query here):
+	<input id="text" type="text" name="stylequery"><br><br>
+	<button class = "submitbtn" type = "submit"> Submit </button> <br>
+	</form>
+	<a href="logout.php">Logout</a><br>
+	 <a href="signup.php">Signup as donor/receiver</a><br>
+
+	</body>
