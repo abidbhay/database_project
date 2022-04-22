@@ -130,11 +130,11 @@ session_start();
           <thead>
             <tr >
 
-              <th scope="col " class="text-center">Donated To</th>
+              <th scope="col " class="text-center">Donated From</th>
 
               <th scope="col " class="text-center">Amount Donated</th>
 
-              <th scope="col " class="text-center">Acc_num Donated to</th>
+              <th scope="col " class="text-center">Acc_num Donated From</th>
 
             </tr>
           </thead>
