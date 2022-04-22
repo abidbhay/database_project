@@ -27,13 +27,30 @@ session_start();
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      
+
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0 " type="submit">Search</button>
-      
-      <a href="logout.php" class="btn btn-warning " role="button">Log Out</a>      
+
+      <a href="logout.php" class="btn btn-warning " role="button">Log Out</a>
+			<ul
+				class="navbar-nav me-2 my-2 my-lg-0 navbar-nav-scroll"
+				style="--bs-scroll-height: 100px"
+			>
+				<li class="nav-item nav-text">
+					<a href="msg_query.php" class="btn btn-warning" role="button">Send Message</a>
+				</li>
+				<li class="nav-item nav-text">
+					<a href="inbox.php" class="btn btn-warning" role="button">Inbox</a>
+				</li>
+
+				<li class="nav-item">
+					<a href="logout.php" class="btn btn-warning" role="button"
+						>Log Out</a
+					>
+				</li>
+			</ul>
     </form>
   </div>
 </nav>
