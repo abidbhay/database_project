@@ -94,7 +94,7 @@ session_start();
             style="--bs-scroll-height: 100px"
           >
             <li class="nav-item nav-text">
-              <a href="donor_index.php" class="btn" role="button">Home</a>
+              <a href="receiver.php" class="btn" role="button">Home</a>
             </li>
 
             <li class="nav-item nav-text">
@@ -110,11 +110,7 @@ session_start();
                 >Donation history</a
               >
             </li> -->
-            <li class="nav-item nav-text">
-              <a href="view_request.php" class="btn" role="button"
-                >Donation Request</a
-              >
-            </li>
+
             <li class="nav-item">
               <a href="logout.php" class="btn btn-warning" role="button"
                 >Log Out</a
