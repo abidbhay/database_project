@@ -43,7 +43,8 @@ session_start();
 
 
 <p>
-
+  <a href="msg_query.php"> Send a message</a> <br><br>
+  <a href="inbox.php">View inbox</a> <br><br>
   <button class="btn btn-primary btn-lg btn-block mb-5" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
   Request as an Individual
   </button>
