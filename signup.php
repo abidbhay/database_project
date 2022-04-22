@@ -30,7 +30,7 @@ session_start();
 ?>
 
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
@@ -44,31 +44,25 @@ session_start();
   			background-color: #cccccc;
   	}
    #text{
-
      height: 25px;
      border-radius: 5px;
      padding: 4px;
      border: solid thin #aaa;
      width: 100%;
    }
-
    #button{
-
      padding: 10px;
      width: 100px;
      color: white;
      background-color: lightblue;
      border: none;
    }
-
    #box{
-
      background-color: grey;
      margin: auto;
      width: 300px;
      padding: 20px;
    }
-
    </style>
    <div id="box">
       <form method="post">
@@ -83,15 +77,84 @@ session_start();
         <select name="utype" id="utype">
             <option value="donor">Donor</option>
           <option value="receiver">Receiver</option>
-
         </select>
         <br><br><br>
         <input  id="button" type="submit"  value="Signup"><br><br>
-
         <a href="login.php">Click to login. </a><br><br>
-
       </form>
-
       </div>
+      <button onclick="history.back()">Go Back</button> -->
+  <!-- </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- bootstrap stylesheet -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+
+    <style>
+    .de{
+        text-decoration: none;
+      }
+
+   </style>
+  </head>
+
+  <body>
+    <main>
+      <section style="height: 500px;" class="container bg-info d-flex justify-content-center align-items-center rounded-3 " id="subscribe">
+        
+      <div>
+        <br>
+        <h1>Signup to EasyCharity</h1> <br>
+          <form method='post'>
+            
+            <div class="mb-3">
+              
+              <label for="exampleInputEmail1" class="form-label">User name</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="user_name">
+              
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+            </div>
+
+            <div>
+              <label for="utype">Choose your user type:</label>
+              <select name="utype" id="utype">
+                  <option value="donor">Donor</option>
+                <option value="receiver">Receiver</option>
+
+              </select>
+            </div>
+             <br> 
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+            <br>              <br>
+            Already have an account?
+            <a href="login.php" class="de text-white">Click to Login</a>
+          </form>
+        </div>
+      </section>
+      
+
+    </main>
+    
+    <!-- bootstrap script -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
