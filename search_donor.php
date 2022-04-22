@@ -3,14 +3,14 @@ session_start();
 
 	include("connection.php");
 	include("functions.php");
-
+	include("receiver.php");
+  
   $user_data = check_login($con);
   $user_id =  $user_data['user_id'] ;
  ?>
 
 
 
-<?php
 
 
 <!DOCTYPE html>
@@ -21,7 +21,7 @@ session_start();
   </head>
   <body>
 
-  <h1> User Found!! </h1>
+  <h1> User Found!! User_name: <?php echo"$search_donor" ?> </h1>
 
   </body>
 </html>
