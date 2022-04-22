@@ -1,234 +1,315 @@
 <?php
+
 session_start();
 
-	include("connection.php");
-	include("functions.php");
- ?>
+  include("connection.php");
+  include("functions.php");
 
 
-<!DOCTYPE html>
-<html lang="en">
+  if($_SERVER['REQUEST_METHOD'] == "POST")
+  {
+    //something was posted
+    $user_name = $_POST['user_name'];
+    $password = $_POST['password'];
+
+    if(!empty($user_name) && !empty($password) && !is_numeric($user_name))
+    {
+
+      //read from database
+      $query = "select * from users where user_name = '$user_name' limit 1";
+      $result = mysqli_query($con, $query);
+
+      if($result)
+      {
+        if($result && mysqli_num_rows($result) > 0)
+        {
+
+          $user_data = mysqli_fetch_assoc($result);
+
+          if($user_data['password'] === $password)
+          {
+
+            $_SESSION['user_id'] = $user_data['user_id'];
+            if($user_data['utype']==='donor'){
+              header("Location: donor_index.php");
+            }
+            if($user_data['utype']==='receiver'){
+              header("Location: receiver.php");
+            }
+						if($user_data['utype']==='admin'){
+							header("Location: admin_index.php");
+						}
+
+            die;
+          }
+        }
+      }
+
+      echo "wrong username or password!";
+    }else
+    {
+      echo "wrong username or password!";
+    }
+  }
+
+?>
+
+
+<!-- <!DOCTYPE html>
+<html>
 <head>
-<title>
-<title>Receiver Page</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="receiver_css/style.css">
+  <title>Login</title>
 </head>
 <body>
 
+  <style type="text/css">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-dark mb-5">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  #text{
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Donate</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    height: 25px;
+    border-radius: 5px;
+    padding: 4px;
+    border: solid thin #aaa;
+    width: 100%;
+  }
+
+  #button{
+
+    padding: 10px;
+    width: 100px;
+    color: black;
+    background-color: lightblue;
+    border: none;
+  }
+
+  #box{
+
+    background-color: grey;
+    margin: auto;
+    width: 300px;
+    padding: 20px;
+  }
+  body {
+      background-image: url("rural.jpg");
+      background-size: cover;
+      background-color: #cccccc;
+  }
+
+  </style>
+
+  <div id="box">
+
+    <form method="post">
+      <div style="font-size: 20px;margin: 10px;color: white;">Login</div>
+
+      <input id="text" type="text" name="user_name"><br><br>
+      <input id="text" type="password" name="password"><br><br>
+
+      <input id="button" type="submit" value="Login"><br><br>
+
+      <a href="signup.php">Click to Signup</a><br><br>
     </form>
   </div>
-</nav>
-
-
-<p>
-  <a href="msg_query.php"> Send a message</a> <br><br>
-  <a href="inbox.php">View inbox</a> <br><br>
-  <button class="btn btn-primary btn-lg btn-block mb-5" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-  Request as an Individual
-  </button>
-</p>
-<div class="collapse" id="collapseExample">
-  <div class="card card-body">
-
-
-  <form class="p-3" action="receiver_request.php" method="post">
-  <div class="form-row">
-   <div class="form-group col-md-6">
-      <label for="personal_userid">User Id</label>
-      <input type="text" class="form-control" name="personal_userId" placeholder="User Id">
-    </div>
-   <div class="form-group col-md-6">
-      <label for="personal_nid">NID</label>
-      <input type="text" class="form-control" name="personal_nid" placeholder="NID">
-    </div>
-
-    <div class="form-group col-md-6">
-    <label for="personal_name">Name</label>
-    <input type="text" class="form-control" name="personal_name" placeholder="Your Name">
-  </div>
-
-
-    <div class="form-group col-md-6">
-      <label for="personal_email">Email</label>
-      <input type="email" class="form-control" name="personal_email" placeholder="Email">
-    </div>
-
-    <div class="form-group col-md-6">
-      <label for="personal_product">Product</label>
-      <input type="text" class="form-control" name="personal_product" placeholder="Product you need">
-    </div>
-
-    <div class="form-group col-md-6">
-      <label for="personal_product_quantity">Product Quantity</label>
-      <input type="number" class="form-control" name="personal_product_quantity" placeholder="Quantity of your product">
-    </div>
-
-
-    <div class="form-group col-md-6">
-      <label for="personal_amount">Amount</label>
-      <input type="number" class="form-control" name="personal_amount" placeholder="Amount you need">
-    </div>
-
-
-</div>
-
-
-
-    <div class="form-group">
-    <label for="perosnal_address">Address</label>
-    <input type="text" class="form-control" name="personal_address" placeholder="Address">
-  </div>
-  </div>
-
-  <div class="form-group mb-4 ml-4 mr-4">
-    <label for="personal_whyrequest">Tell us Briefly about Your Request</label>
-    <textarea class="form-control" name="personal_whyrequest" rows="3"></textarea>
-  </div>
-
-
-
-
-  <button type="submit" class="btn btn-primary mb-4 ml-4 mr-4">Submit</button>
-</form>
-
-</div>
-
-
-
-
-
-
-
-
-
-<p>
-
-  <button class="btn btn-primary btn-lg btn-block mt-5" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
-  Request as an Organization
-  </button>
-</p>
-<div class="collapse" id="collapseExample2">
-  <div class="card card-body">
-
- <form class="p-3" action="org_receiver_request.php" method="post">
-  <div class="form-row">
-   <div class="form-group col-md-6">
-      <label for="org_userId">User Id</label>
-      <input type="text" class="form-control" name="org_userId" placeholder="User Id">
-    </div>
-   <div class="form-group col-md-6">
-      <label for="org_licence">Licence Number</label>
-      <input type="text" class="form-control" name="org_licence" placeholder="NID">
-    </div>
-
-    <div class="form-group col-md-6">
-    <label for="org_name">Organization Name</label>
-    <input type="text" class="form-control" name="org_name" placeholder="Your Organization Name">
-  </div>
-
-
-    <div class="form-group col-md-6">
-      <label for="org_email">Email</label>
-      <input type="email" class="form-control" name="org_email" placeholder="Email">
-    </div>
-
-
-    <div class="form-group col-md-6">
-      <label for="org_product">Product</label>
-      <input type="text" class="form-control" name="org_product" placeholder="Product you need">
-    </div>
-
-    <div class="form-group col-md-6">
-      <label for="org_product_quantity">Product Quantity</label>
-      <input type="number" class="form-control" name="org_product_quantity" placeholder="Quantity of your product">
-    </div>
-
-
-    <div class="form-group col-md-6">
-      <label for="org_amount">Amount</label>
-      <input type="number" class="form-control" name="org_amount" placeholder="Amount your organization need">
-    </div>
-
-
-
-</div>
-
-
-
-
-
-
-
-    <div class="form-group">
-    <label for="org_address">Organization Address</label>
-    <input type="text" class="form-control" name="org_address" placeholder="Organization Address">
-  </div>
-  </div>
-
-  <div class="form-group mb-4 ml-4 mr-4">
-    <label for="org_whyrequest">Tell us Briefly about Your Request</label>
-    <textarea class="form-control " name="org_whyrequest" rows="3"></textarea>
-  </div>
-
-
-
-
-  <button type="submit" class="btn btn-primary mb-4 ml-4 mr-4">Submit</button>
-</form>
-</div>
-            List of all donors:
-            <br>
-						<table style="border:1px solid black;margin-left:auto;margin-right:auto;">
-							<tr>
-								<th>  <font size="2"> Receiver Name </font></th>
-								<th>  <font size="2"> Receiver ID </font></th>
-							</tr>
-							<?php
-
-								$con= mysqli_connect("localhost","root","", "charity");
-								$sql= 'SELECT * from users WHERE utype="donor"';
-								$result= $con->query($sql);
-
-								if ($result->num_rows>0){
-									while($row= $result-> fetch_assoc()){
-									 echo	 "<tr><td>".$row['user_name'] . "</td><td>" .$row['user_id'] . "</td>" ;
-									}
-								}
-								else {
-									echo "No results";
-								}
-
-
-								$con->close();
-							 ?>
-						</table>
-
-
-<a href="logout.php">Logout</a>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <header>
+      <!-- Navbar -->
+
+      <nav
+        class="navbar navbar-expand-lg navbar-light banner-bg bg-info fixed-top"
+      >
+        <div class="container-fluid">
+          <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse navbar-collapse justify-content-center"
+            id="navbarNav"
+          >
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a
+                  class="nav-link active fw-bold text-black fs-4 me-3"
+                  aria-current="page"
+                  href="#home"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link active fw-bold text-secondary fs-4 me-3"
+                  href="#aboutme"
+                  >About us</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link active fw-bold text-secondary fs-4 me-3"
+                  href="#ex"
+                  >Services</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link active fw-bold text-secondary fs-4 me-3"
+                  href="#project"
+                  >Login</a
+                >
+              </li>
+              <!-- <li class="nav-item">
+                <a
+                  class="nav-link active fw-bold text-secondary fs-4"
+                  href="#skill"
+                  >Skills</a
+                >
+              </li> -->
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <br />
+
+      <!-- background -->
+      <section class="container my-5">
+        <div
+          id="carouselExampleInterval"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="2000">
+              <img src="images/carosel1.jpg" class="d-block w-100" alt="..." />
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+              <img src="images/rural.jpg" class="d-block w-100" alt="..." />
+            </div>
+            <div class="carousel-item">
+              <img src="images/carosel3.jpg" class="d-block w-100" alt="..." />
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleInterval"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleInterval"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </section>
+    </header>
+
+    <main>
+      <div class="container" id="aboutme">
+        <h1 class="text-center">About Us</h1>
+        <br />
+        <p>
+          Shakti Foundation is a non-government organization committed to the
+          economic and social empowerment of disadvantaged women across
+          Bangladesh. It believes in realizing the potential of women to become
+          strong, independent members of their communities. Shakti began its
+          mission with urban microfinance programs and strategically expanded
+          its service network to reach remote rural areas. Over the years, it
+          has widened its range of development services to include basic health
+          care and education, agro-business growth, solar power, skills training
+          and advocacy. Shakti was founded in April 1992 and now serves almost
+          500,000 households within 54 districts of Bangladesh.
+        </p>
+      </div>
+
+      <br />
+
+      <div class="container">
+        <h1 class="text-center">Services</h1>
+        <br />
+        <div class="row gx-5">
+          <div class="col">
+            <div class="p-3 py-5 border bg-success text-white text-center">
+              Personal Donation
+            </div>
+          </div>
+          <div class="col">
+            <div class="p-3 py-5 border bg-warning text-center">
+              Organization donation
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <br>
+
+      <!-- Login -->
+      <div class="container ">
+        <h1 class="text-center">Sign in!!</h1>
+        <div class="row bg-info align-items-center rounded-3 py-5">
+          <div class="col text-center ">
+            Join us now to help to create a better platform <br> to help and get help from people.
+          </div>
+          <div class="col">
+            <form method="post">
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">User name</label> <br>
+                <input type="text"  id="text" name="user_name">
+
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+              </div>
+
+              <button type="submit" class="btn btn-primary">Login</button>
+              <br>
+              <br>
+
+              <a href="signup.php">Click to Signup</a>
+							<a href="signup.php">Click to Signup</a>
+            </form>
+          </div>
+      </div>
+    </main>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
