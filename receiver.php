@@ -42,10 +42,13 @@ session_start();
 					<a href="msg_query.php" class="btn btn-warning" role="button">Send Message</a>
 				</li>
 				<li class="nav-item nav-text">
+					<a href="received_history.php" class="btn btn-warning" role="button">Received History</a>
+				</li>
+				<li class="nav-item nav-text">
 					<a href="inbox.php" class="btn btn-warning" role="button">Inbox</a>
 				</li>
 
-				
+
 					>
 				</li>
 			</ul>
