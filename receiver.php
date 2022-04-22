@@ -16,7 +16,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 {
   // posted details
   $search_donor = $_POST['search_donor'];
-
+	$_SESSION['$got_donor']=$search_donor;
   $query= "SELECT * FROM users WHERE user_name= '$search_donor' and utype='donor'";
   $result = mysqli_query($con, $query);
   if($result)
@@ -80,10 +80,10 @@ Receiver Page</title>
 				<li class="nav-item nav-text">
 					<a href="received_history.php" class="btn btn-warning ml-3" role="button">Received History</a>
 				</li>
-				
 
 
-					
+
+
 				</li>
 			</ul>
     </form>
