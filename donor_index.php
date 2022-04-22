@@ -212,7 +212,7 @@ session_start();
             </li>
           </ul>
           <!-- <form class="d-flex">
-            
+
             <li class="nav-item">
               <a class="nav-link disabled">Link</a>
             </li>
@@ -240,7 +240,8 @@ session_start();
     >
       <div>
         <p>
-          Hello <?php echo $user_data['user_name'] ?>, This is your profile. You are our verified donor.
+          Hello <?php echo $user_data['user_name'] ?>, You are our donor.
+					 Id: <?php echo $user_data['user_id'] ?>
         </p>
       </div>
       <br />
