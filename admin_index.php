@@ -214,7 +214,7 @@ Total number of active receivers and donors in the website:
           <thead>
             <tr>
               
-              <th scope="col " class="text-center">Donar Name</th>
+              <th scope="col " class="text-center">Donor Name</th>
               <th scope="col " class="text-center">Receiver Name </th>
               <th scope="col " class="text-center">Amount </th>
               
@@ -256,7 +256,7 @@ Total number of active receivers and donors in the website:
           <thead>
             <tr>
               
-              <th scope="col " class="text-center">Donar Name</th>
+              <th scope="col " class="text-center">Donor Name</th>
               
               <th scope="col " class="text-center">Amount </th>
               
@@ -291,9 +291,9 @@ Total number of active receivers and donors in the website:
           <thead>
             <tr >
               
-              <th scope="col " class="text-center">Numbers of Donars</th>
+              <th scope="col " class="text-center">User Type</th>
               
-              <th scope="col " class="text-center">Numbers of Receivers</th>
+              <th scope="col " class="text-center">Numbers of Users</th>
               
             </tr>
           </thead>
