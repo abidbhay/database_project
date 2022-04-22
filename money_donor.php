@@ -153,7 +153,7 @@ session_start();
 						<li class="nav-item nav-text">
               <a href="inbox.php" class="btn" role="button">Inbox</a>
             </li>
-            
+
             <li class="nav-item nav-text">
               <a href="donation_history.php" class="btn" role="button"
                 >Donation history</a
@@ -170,7 +170,7 @@ session_start();
               >
             </li>
           </ul>
-          
+
         </div>
       </div>
     </nav>
@@ -180,16 +180,16 @@ session_start();
       <table class="table table-striped table-info" >
         <thead>
           <tr >
-            
+
             <th scope="col " class="text-center">Receiver Name</th>
             <th scope="col " class="text-center">Receiver ID </th>
-            
+
           </tr>
         </thead>
         <tbody>
           <tr class="td-text">
 
-            
+
             <?php
 
               $con= mysqli_connect("localhost","root","", "charity");
@@ -208,18 +208,22 @@ session_start();
 
               $con->close();
             ?>
-            
+
           </tr>
-          
+
         </tbody>
       </table>
 
     </div>
     <br>
-      
+
+
+
       <form method="post" >
         <div class = "container text-center">
           <h1> Please insert transaction details to Donate</h1>
+					 <p>  Hello <?php echo $user_data['user_name'] ?>, You are our donor.
+					 Id: <?php echo $user_data['user_id'] ?>  </p>
           <p> Fill in the boxes to complete </p>
           </hr>
           Enter receiver_id for your donation:
@@ -244,9 +248,9 @@ session_start();
           <label for = "re_pass"><b> Re-enter Password </b></label>
           <input type = "password" placeholder = "Re-enter Passowrd" name = "re_pass" id = "re_pass" required/>
         </hr>
-  
+
         <button class = "submitbtn" type = "submit"> Submit </button>
-      </form>  
+      </form>
       <br> <br>
     <br>
     <script
